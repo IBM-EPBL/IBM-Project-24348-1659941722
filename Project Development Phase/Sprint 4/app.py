@@ -3,9 +3,7 @@ from flask import Flask, request, jsonify, render_template,redirect,url_for
 import pickle
 
 app = Flask(__name__,template_folder='Template')
-model = pickle.load(open('D:/IBM_UAEP/model.pkl', 'rb'))
-
-
+model = pickle.load(open('model.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -13,7 +11,6 @@ def home():
 
 @app.route('/predict', methods=['GET','post'])
 def predict():
-	
 	GRE_Score = int(request.form['GRE Score'])
 	TOEFL_Score = int(request.form['TOEFL Score'])
 	University_Rating = int(request.form['University Rating'])
@@ -39,7 +36,7 @@ def chance(percent):
 
 @app.route("/nochance/<percent>")
 def no_chance(percent):
-    return render_template("noChance.html", content=[percent])	
+    return render_template("nochance.html", content=[percent])	
 	
 if __name__ == "__main__":
 	app.run(debug=True)

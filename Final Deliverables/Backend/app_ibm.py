@@ -9,7 +9,6 @@ token_response = requests.post('https://iam.cloud.ibm.com/identity/token', data=
 mltoken = token_response.json()["access_token"]
 
 header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + mltoken}
-
 app = Flask(__name__,template_folder='Template')
 
 @app.route('/')
@@ -18,6 +17,7 @@ def home():
 
 @app.route('/predict', methods=['GET','post'])
 def predict():
+
 	GRE_Score = int(request.form['GRE Score'])
 	TOEFL_Score = int(request.form['TOEFL Score'])
 	University_Rating = int(request.form['University Rating'])
